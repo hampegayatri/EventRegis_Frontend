@@ -1,0 +1,53 @@
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center">
+    <!-- Hero Section with Title -->
+    <div class="text-center">
+      <h1 class="display-3 mb-4">Welcome to Event Registration</h1>
+      <p class="lead">Organize and attend amazing events with ease!</p>
+    </div>
+  
+<!-- Buttons for Login and Sign Up -->
+<div class="mt-2">
+    <button (click)="navigateToLogin()" class="btn btn-outline-light btn-lg mx-2">Login</button>
+    <button (click)="navigateToSignup()" class="btn btn-light btn-lg mx-2">Sign Up</button>
+  </div>
+</div>
+ <!-- Features Section -->
+ <div class="features-section text-center mt-5 z-index-1">
+    <h2 class="mb-4">Why Choose Us?</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="feature-card p-4 bg-light rounded">
+                <h3 class="feature-title">Easy to Use</h3>
+                <p>Our platform is designed to be user-friendly and intuitive, making event management a breeze.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="feature-card p-4 bg-light rounded">
+                <h3 class="feature-title">Flexible Options</h3>
+                <p>Customize your events with a range of options to suit your needs and preferences.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="feature-card p-4 bg-light rounded">
+                <h3 class="feature-title">24/7 Support</h3>
+                <p>Our dedicated support team is here to help you anytime, ensuring your events run smoothly.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Introduction Section -->
+<div class="video-section text-center mt-5 z-index-1">
+    <h2 class="mb-4">Watch Our Introduction</h2>
+    <div class="video-wrapper">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Interactive Element: Event Countdown -->
+<div class="countdown-section text-center mt-5 z-index-1">
+    <h2 class="mb-4">Upcoming Event</h2>
+    <div id="countdown" class="d-flex justify-content-center">
+        <!-- Countdown Timer Here -->
+    </div>
+</div>

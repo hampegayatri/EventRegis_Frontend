@@ -5,6 +5,11 @@ import { JwtInterceptor } from './Interceptor/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignupComponent } from './Components/Auth/signup/signup.component';
 import { AuthService } from './Services/auth.service';
+import { DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReportService } from './Services/report.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,12 +17,15 @@ import { AuthService } from './Services/auth.service';
     RouterOutlet, // For routing outlet
     ReactiveFormsModule,
     SignupComponent,
+    CommonModule,
+    MatSnackBarModule,
+    NgxPaginationModule,
     HttpClientModule, // For HTTP operations
     ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [
-    AuthService,
+  providers: [DatePipe, CommonModule,
+    AuthService,ReportService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
 })

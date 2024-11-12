@@ -1,0 +1,42 @@
+.height-fit-content {
+  height: fit-content !important;
+}
+
+.help-text {
+  height: fit-content !important;
+  width: 100%;
+}
+
+.p-card-header img {
+  width: 100%;
+}
+
+.p-card {
+  background: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 0.87);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.p-card .p-card-body {
+  padding: 1rem;
+}
+.p-card .p-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+.p-card .p-card-subtitle {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+.p-card .p-card-content {
+  padding: 1rem 0;
+  color: black;
+}
+.p-card .p-card-footer {
+  padding: 1rem 0 0 0;
+  color: black;
+}

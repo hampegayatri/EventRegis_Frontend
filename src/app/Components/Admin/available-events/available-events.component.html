@@ -1,0 +1,167 @@
+<div class="container mt-5">
+    <h2>Available Events</h2>
+
+    <button (click)="bulkDelete()" class="btn btn-danger mt-3">Bulk Delete</button>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Venue</th>
+                            <th>Category</th>
+                            <th>Artist</th>
+                            <th>Organizer</th>
+                            <th>Tags</th> 
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of displayedEvents">
+                            <td>
+                                <input type="checkbox" [checked]="isEventSelected(event.id)"
+                                    (change)="toggleEventSelection(event.id)" />
+                            </td>
+                            <td>{{ event.name }}</td>
+                            <td>{{ event.description }}</td>
+                            <td>{{ event.date | date }}</td>
+                            <td>{{ event.venueName }}</td>
+                            <td>{{ event.categoryName }}</td>
+                            <td>{{ event.artistName }}</td>
+                            <td>{{ event.organizerName }}</td>
+                            <td>{{ event.tags }}</td> 
+                            <td>
+                                <button (click)="openEditModal(event)" class="btn btn-warning btn-sm"
+                                    data-bs-toggle="modal" data-bs-target="#editEventModal">Edit</button>
+                                <button (click)="deleteEvent(event.id)" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editEventModalLabel">Edit Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editEventForm" (ngSubmit)="onEditSubmit()">
+                        <div class="mb-3">
+                            <label for="editName" class="form-label">Event Name</label>
+                            <input id="editName" formControlName="name" class="form-control" />
+                            <div *ngIf="editEventForm.get('name')?.invalid && editEventForm.get('name')?.touched"
+                                class="text-danger">
+                                Event Name is required and must be less than 100 characters.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescription" class="form-label">Description</label>
+                            <textarea id="editDescription" formControlName="description"
+                                class="form-control"></textarea>
+                            <div *ngIf="editEventForm.get('description')?.invalid && editEventForm.get('description')?.touched"
+                                class="text-danger">
+                                Description must be less than 500 characters.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDate" class="form-label">Event Date</label>
+                            <input id="editDate" formControlName="date" type="date" class="form-control" />
+                            <div *ngIf="editEventForm.get('date')?.invalid && editEventForm.get('date')?.touched"
+                                class="text-danger">
+                                Event Date is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editVenueId" class="form-label">Venue</label>
+                            <select id="editVenueId" formControlName="venueId" class="form-select">
+                                <option *ngFor="let venue of venues" [value]="venue.id">{{ venue.name }}</option>
+                            </select>
+                            <div *ngIf="editEventForm.get('venueId')?.invalid && editEventForm.get('venueId')?.touched"
+                                class="text-danger">
+                                Venue is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategoryId" class="form-label">Category</label>
+                            <select id="editCategoryId" formControlName="categoryId" class="form-select">
+                                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="editEventForm.get('categoryId')?.invalid && editEventForm.get('categoryId')?.touched"
+                                class="text-danger">
+                                Category is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editArtistId" class="form-label">Artist</label>
+                            <select id="editArtistId" formControlName="artistId" class="form-select">
+                                <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
+                            </select>
+                            <div *ngIf="editEventForm.get('artistId')?.invalid && editEventForm.get('artistId')?.touched"
+                                class="text-danger">
+                                Artist is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editOrganizerId" class="form-label">Organizer</label>
+                            <select id="editOrganizerId" formControlName="organizerId" class="form-select">
+                                <option *ngFor="let organizer of organizers" [value]="organizer.id">{{ organizer.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="editEventForm.get('organizerId')?.invalid && editEventForm.get('organizerId')?.touched"
+                                class="text-danger">
+                                Organizer is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tags" class="form-label">Tags</label>
+                            <input type="text" id="tags" formControlName="tags" class="form-control" />
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- Row with Pagination and Go Back button -->
+ <div class="row mb-4">
+    <!-- Column 1: Pagination -->
+    <div class="col-md-6">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="goToPage(currentPage - 1)" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item" *ngFor="let page of [].constructor(getTotalPages()); let i = index" 
+              [class.active]="i + 1 === currentPage">
+            <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === getTotalPages()">
+            <a class="page-link" (click)="goToPage(currentPage + 1)" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Column 2: Go Back button -->
+    <div class="col-md-6 justify-content-end">
+      <button class="btn btn-dark" (click)="goBack()">Go Back</button>
+    </div>
+  </div>
+

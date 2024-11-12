@@ -1,0 +1,95 @@
+/* Custom styles for toast container */
+.toast-container {
+    z-index: 1050; /* Ensure it's on top of other elements */
+  }
+  
+  .toast {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .toast-header {
+    background-color: #007bff; /* Blue background for header */
+    color: #ffffff; /* White text color */
+    border-bottom: 1px solid #0056b3; /* Darker blue border */
+  }
+  
+  .toast-body {
+    font-size: 16px; /* Adjust font size */
+  }
+  
+  .toast-body .btn-close {
+    filter: invert(1); /* White close button */
+  }
+  
+  .toast.show {
+    animation: fadeInOut 3s forwards; /* Animation for showing and hiding */
+  }
+  .custom-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 30px; /* Adjust padding as needed */
+    margin-top: 50px; /* Adjust margin as needed */
+}
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+  /* Card Styling */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styling */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 12px rgba(0, 87, 179, 0.4);
+}
+
+/* Toast Styling */
+.toast {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toast-header {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.toast-header .btn-close {
+  color: #fff;
+}
+
+.toast-header .btn-close:hover {
+  color: #f8f9fa;
+}

@@ -1,0 +1,75 @@
+.disabled-text-input {
+  padding: 12px 16px;
+  margin: 4px 0px;
+  background-color: #f0f0f0 !important;
+  border-radius: 4px;
+  color: #b8b8b8 !important;
+  border: 1px solid #f0f0f0 !important;
+}
+.temp-border {
+  border: 1px solid lightgray;
+  position: relative;
+}
+.text-field {
+  min-width: 64px;
+  padding: 12px 16px;
+  margin: 4px 0px;
+  background-color: #fff;
+  border-radius: 4px;
+
+  border: 1px solid #e0e0e0;
+}
+
+.text-field:hover {
+  border: 1px solid #666666;
+}
+
+.text-field:focus-within {
+  outline: none;
+}
+
+.text-field:focus {
+  border: 1px solid #4a154b;
+}
+.text-field ::placeholder {
+  color: #8f8f8f;
+}
+
+.component-label {
+  width: 100%;
+  font-weight: 500;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25em;
+  padding: 0 0 0 2px;
+  text-align: left;
+}
+
+.invalid-input-text {
+  font-size: 12px;
+  color: #da2d20;
+  text-align: start;
+  width: 100%;
+}
+
+.validation-error-wrapper {
+  border: 1px solid #da2d20 !important;
+  border-radius: 5px;
+  padding: 12px 16px;
+}
+.help-text {
+  height: fit-content !important;
+  width: 100%;
+}
+fa-icon.calendar-icon {
+  position: absolute;
+  right: 20px;
+  transform: translateY(-140%);
+  color: gray;
+}
+
+.has-label + fa-icon.calendar-icon {
+  position: absolute;
+  right: 20px;
+  color: gray;
+}

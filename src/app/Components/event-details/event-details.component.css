@@ -1,0 +1,71 @@
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Sidebar Styling */
+  .list-group-item-action {
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .list-group-item-action:hover {
+    background-color: #f0f0f0;
+    color: #007bff; /* Change color on hover */
+    border-radius: 4px; /* Rounded corners on hover */
+  }
+  
+  /* Event Card Styling */
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    height: 100%; /* Ensure cards stretch to fill their container */
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    transform: translateY(-5px); /* Lift the card slightly */
+  }
+  
+  /* Card Body Styling */
+  .card-body {
+    flex: 1; /* Allow the card body to grow and fill the space */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content */
+  }
+  
+  /* Card Title */
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Card Text */
+  .card-text {
+    font-size: 0.875rem;
+    color: #555;
+  }
+  
+  /* Error Message */
+  .alert-danger {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  /* No Events Found */
+  p {
+    font-size: 1rem;
+    color: #666;
+  }
+  

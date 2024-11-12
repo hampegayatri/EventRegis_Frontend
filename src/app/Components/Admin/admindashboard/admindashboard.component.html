@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <h2 class="text-light">Admin Dashboard</h2>
+  <!-- Logout Button -->
+<div class=" mt-4">
+  <button class="btn btn-danger" (click)="logout()">Logout</button>
+</div>
+
+  <div class="row mt-4">
+    <!-- Use *ngFor to iterate over the cards array -->
+    <div class="col-md-4 mb-4" *ngFor="let card of cards">
+      <div class="card shadow-sm border-light">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ card.title }}</h5>
+          <p class="card-text">{{card.description}}</p>
+         
+                    <button class="btn btn-primary" (click)="navigateTo(card.route)">Go to {{ card.title }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

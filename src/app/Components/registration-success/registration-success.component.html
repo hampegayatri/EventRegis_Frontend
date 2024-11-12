@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <button (click)="logout()" class="btn btn-danger text-center" >Logout</button>
+
+        <h1 class="text-center">Registration Successful</h1>
+        <p class="text-center">Thank you for registering. Your payment has been processed successfully.</p>
+        
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6">
+                <div class="card  mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Event Details</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Event Name:</strong> {{ eventName }}</li>
+                            <li class="list-group-item"><strong>Date:</strong> {{ eventDate | date:'fullDate' }}
+                            </li>
+                            <li class="list-group-item"><strong>Venue:</strong> {{ venue }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    

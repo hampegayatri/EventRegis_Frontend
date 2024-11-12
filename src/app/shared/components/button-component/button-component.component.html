@@ -1,0 +1,22 @@
+<div [hidden]="configProperties.isHidden">
+  <button
+    [type]="configProperties.btnType"
+    [id]="configProperties.type + configProperties.propertyName"
+    class="button-primary"
+    (click)="onSubmitForm()"
+    (change)="onSubmitForm()"
+    [ngClass]="[
+      getCustomCssClasses(),
+      configProperties.styles.stylesClassName
+        ? configProperties.styles.stylesClassName
+        : '',
+    ]"
+  >
+    {{ configProperties.btnText || 'Button' }}
+  </button>
+  <div *ngIf="configProperties.helpText" class="help-text">
+    <small [class]="'text-muted '">
+      {{ configProperties.helpText }}
+    </small>
+  </div>
+</div>

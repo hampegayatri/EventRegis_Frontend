@@ -1,0 +1,58 @@
+<div class="container mt-5">
+    <h2 class="mt-4">Your Registered Events</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registration of paginatedRegistrations">
+          <td>{{ registration.eventName }}</td>
+          <td>{{ registration.eventDate | date:'fullDate' }}</td>
+          <td>{{ registration.status }}</td>
+          <td>
+            <button 
+              class="btn btn-danger" 
+              (click)="cancelRegistration(registration.id)"
+              [disabled]="isCancelButtonDisabled(registration.status)"
+            >
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="registrations.length === 0">
+      <p>No registrations found.</p>
+    </div>
+  
+    <!-- Pagination Controls -->
+    <nav *ngIf="totalPages > 1">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{ 'disabled': currentPage === 1 }">
+          <a class="page-link" (click)="onPageChange(currentPage - 1)" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let page of [].constructor(totalPages); let i = index"
+            class="page-item" [ngClass]="{ 'active': i + 1 === currentPage }">
+          <a class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [ngClass]="{ 'disabled': currentPage === totalPages }">
+          <a class="page-link" (click)="onPageChange(currentPage + 1)" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  

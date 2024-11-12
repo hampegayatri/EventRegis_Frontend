@@ -1,0 +1,52 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  ul.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  
+  ul.list-unstyled li {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  ul.list-unstyled i {
+    color: #28a745; /* Green color for check icons */
+    margin-right: 8px;
+  }
+  
+  .btn-primary {
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  

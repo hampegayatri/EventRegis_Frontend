@@ -1,0 +1,86 @@
+<div [hidden]="configProperties.isHidden">
+  <label
+    class="col-auto component-label"
+    *ngIf="configProperties.showLabel"
+    [for]="configProperties.formControlName"
+    [style.color]="
+      form.controls[configProperties.formControlName].invalid &&
+      form.controls[configProperties.formControlName].touched
+        ? '#DA2D20 !important'
+        : ''
+    "
+    [ngClass]="[
+      configProperties.styles.labelStylesClassName
+        ? configProperties.styles.labelStylesClassName
+        : '',
+    ]"
+  >
+    {{ configProperties.displayName || 'Label' }}
+    <span class="ml-1 text-danger" *ngIf="isMandatory()">*</span>
+  </label>
+  <div *ngIf="form !== undefined" [formGroup]="form">
+    <input
+      type="text"
+      [class.has-label]="configProperties.showLabel"
+      [placeholder]="configProperties.placeHolder"
+      class="form-control temp-border h-100"
+      [ngClass]="[
+        form.controls[configProperties.formControlName].invalid &&
+        form.controls[configProperties.formControlName].touched
+          ? 'validation-error-wrapper'
+          : '',
+        isReadOnly() ? 'disabled-text-input' : '',
+        getCustomCssClasses(),
+        configProperties.styles.stylesClassName
+          ? configProperties.styles.stylesClassName
+          : '',
+      ]"
+      [bsConfig]="{
+        isAnimated: true,
+        adaptivePosition: true,
+        dateInputFormat: configProperties?.dateFormat ?? 'DD-MM-YYYY',
+        showWeekNumbers: false,
+        containerClass: 'theme-green',
+      }"
+      [readonly]="isReadOnly()"
+      [formControlName]="configProperties.formControlName"
+      (click)="onDatepickerChanged()"
+      (ngModelChange)="onDatepickerChanged()"
+      #drp="bsDatepicker"
+      style="cursor: pointer"
+      bsDatepicker
+    />
+    <fa-icon
+      style="cursor: pointer"
+      [icon]="faCalendarAlt"
+      (click)="drp.toggle()"
+      class="calendar-icon"
+    >
+    </fa-icon>
+    <div *ngIf="configProperties.helpText" class="help-text">
+      <small [class]="'text-muted '">
+        {{ configProperties.helpText }}
+      </small>
+    </div>
+    <!-- Validation error texts -->
+    <div
+      *ngIf="
+        form.controls[configProperties.formControlName]?.invalid &&
+        form.controls[configProperties.formControlName]?.touched
+      "
+      [style]="
+        'height: fit-content !important; width: ' +
+        configProperties.styles.width +
+        ';'
+      "
+    >
+      <ng-container
+        *ngIf="
+          form.controls[configProperties.formControlName].errors?.['required']
+        "
+      >
+        <p class="invalid-input-text">Please enter value</p>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="custom-container mb-4 w-75 float-center">
+    <h2>Add Event</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <!-- First Column -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Event Name</label>
+            <input id="name" formControlName="name" class="form-control" />
+            <div *ngIf="eventForm.get('name')?.invalid && eventForm.get('name')?.touched" class="text-danger">
+              Event Name is required and must be less than 100 characters.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" class="form-control"></textarea>
+            <div *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched" class="text-danger">
+              Description must be less than 500 characters.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Event Date</label>
+            <input id="date" formControlName="date" type="date" class="form-control" />
+            <div *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched" class="text-danger">
+              Event Date is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tags">Tags</label>
+            <input id="tags" formControlName="tags" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Second Column -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="venueId">Venue</label>
+            <select id="venueId" formControlName="venueId" class="form-control">
+              <option *ngFor="let venue of venues" [value]="venue.id">{{ venue.name }}</option>
+            </select>
+            <div *ngIf="eventForm.get('venueId')?.invalid && eventForm.get('venueId')?.touched" class="text-danger">
+              Venue is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="categoryId">Category</label>
+            <select id="categoryId" formControlName="categoryId" class="form-control">
+              <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+            <div *ngIf="eventForm.get('categoryId')?.invalid && eventForm.get('categoryId')?.touched" class="text-danger">
+              Category is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="artistId">Artist</label>
+            <select id="artistId" formControlName="artistId" class="form-control">
+              <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
+            </select>
+            <div *ngIf="eventForm.get('artistId')?.invalid && eventForm.get('artistId')?.touched" class="text-danger">
+              Artist is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="organizerId">Organizer</label>
+            <select id="organizerId" formControlName="organizerId" class="form-control">
+              <option *ngFor="let organizer of organizers" [value]="organizer.id">{{ organizer.name }}</option>
+            </select>
+            <div *ngIf="eventForm.get('organizerId')?.invalid && eventForm.get('organizerId')?.touched" class="text-danger">
+              Organizer is required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-block border rounded-pill mt-3" [disabled]="eventForm.invalid">Add Event</button>
+    </form>
+
+    <!-- Display success message -->
+    <div *ngIf="successMessage" class="alert alert-success mt-3">
+      {{ successMessage }}
+    </div>
+    
+    <!-- Display error message -->
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>

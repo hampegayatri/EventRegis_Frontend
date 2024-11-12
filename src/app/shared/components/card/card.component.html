@@ -1,0 +1,56 @@
+<div [hidden]="isHidden">
+  <div [ngClass]="[getCustomCssClasses()]" (click)="navigateToAnotherPage()">
+    <div
+      [style]="
+        'min-height: ' +
+        (configProperties.childs.length > 0 ? 'fit-content' : '50px') +
+        ';'
+      "
+    >
+      <div
+        [ngClass]="['p-card p-component']"
+        [ngStyle]="style || {}"
+        [class]="styleClass || ''"
+        [attr.data-pc-name]="'card'"
+      >
+        <div class="p-card-header" *ngIf="headerFacet || headerTemplate">
+          <ng-content select="p-header"></ng-content>
+          <ng-container
+            *ngTemplateOutlet="headerTemplate ?? null"
+          ></ng-container>
+        </div>
+        <div class="p-card-body">
+          <div class="p-card-title" *ngIf="header || titleTemplate">
+            {{ header }}
+            <ng-container
+              *ngTemplateOutlet="titleTemplate ?? null"
+            ></ng-container>
+          </div>
+          <div class="p-card-subtitle" *ngIf="subheader || subtitleTemplate">
+            {{ subheader }}
+            <ng-container
+              *ngTemplateOutlet="subtitleTemplate ?? null"
+            ></ng-container>
+          </div>
+          <div class="p-card-content">
+            <ng-content></ng-content>
+            <ng-container
+              *ngTemplateOutlet="contentTemplate ?? null"
+            ></ng-container>
+          </div>
+          <div class="p-card-footer" *ngIf="footerFacet || footerTemplate">
+            <ng-content select="p-footer"></ng-content>
+            <ng-container
+              *ngTemplateOutlet="footerTemplate ?? null"
+            ></ng-container>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="helpText" [class]="'help-text'">
+        <small [class]="'text-muted '">
+          {{ helpText }}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

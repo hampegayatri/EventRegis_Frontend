@@ -1,0 +1,141 @@
+<div class="container mt-5">
+  <h2>Register for Selected Event</h2>
+  <div class="row">
+    <!-- Event Details Column with Card -->
+    <div class="col-md-3">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2 class="card-title">Event Details</h2>
+          <p class="card-text"><strong>Event Name:</strong> {{ event?.name }}</p>
+          <p class="card-text"><strong>Date:</strong> {{ event?.date | date: 'fullDate' }} at {{ event?.date | date:
+            'shortTime' }}</p>
+          <p class="card-text"><strong>Venue:</strong> {{ venueName }}</p>
+          <p class="card-text"><strong>Artist:</strong> {{ artistName }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Form Column -->
+    <!-- <div class="custom-container mb-4 w-50 ">     -->
+    <div class="col-md-6">
+      <h2 class="mt-4">Event Registration</h2>
+      <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+
+        <!-- Row 1: Ticket Type and Price -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ticketTypeId">Ticket Type</label>
+              <select class="form-control" id="ticketTypeId" name="ticketTypeId" required
+                [(ngModel)]="registrationDto.ticketTypeId" (change)="onTicketTypeChange($event)"
+                #ticketTypeId="ngModel">
+                <option *ngFor="let type of ticketTypes" [value]="type.id">{{ type.name }}</option>
+              </select>
+              <div *ngIf="ticketTypeId.invalid && ticketTypeId.touched" class="text-danger">
+                Please select a ticket type.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input type="number" class="form-control" id="price" name="price" [value]="selectedPrice" disabled>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: First Name and Last Name -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" required maxlength="50"
+                [(ngModel)]="registrationDto.firstName" #firstName="ngModel">
+              <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                First Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" required maxlength="50"
+                [(ngModel)]="registrationDto.lastName" #lastName="ngModel">
+              <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+                Last Name is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Email and Mobile Number -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required maxlength="100"
+                [(ngModel)]="registrationDto.email" #email="ngModel"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+              <div *ngIf="email.invalid && email.touched" class="text-danger">
+                Please enter a valid email address.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="mobileNumber">Mobile Number</label>
+              <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" required maxlength="15"
+                [(ngModel)]="registrationDto.mobileNumber" #mobileNumber="ngModel" pattern="^[0-9]{10}$">
+              <div *ngIf="mobileNumber.invalid && mobileNumber.touched" class="text-danger">
+                Mobile number must contain exactly 10 digits.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 4: Age and Gender -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" class="form-control" id="age" name="age" required [(ngModel)]="registrationDto.age"
+                #age="ngModel" min="5" max="80">
+              <div *ngIf="age.invalid && age.touched" class="text-danger">
+                Age must be between 5 and 80.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select class="form-control" id="gender" name="gender" required [(ngModel)]="registrationDto.gender"
+                #gender="ngModel">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div *ngIf="gender.invalid && gender.touched" class="text-danger">
+                Gender is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3" [disabled]="registrationForm.invalid">Pay Now</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="successToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Success</strong>
+      <small>Just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Registration and payment successful!
+    </div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+/* General container styling */
+
+  
+  /* Table header styling */
+  .table th {
+    cursor: pointer;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+  
+  .table th:hover {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+  
+  /* Styling for alternating row colors */
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Center align important table columns */
+  .table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Highlight table rows on hover */
+  .table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+  }
+  
+  /* Search input styling */
+  input[type="text"] {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+  }
+  
+  /* Pagination controls styling */
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-controls .ngx-pagination {
+    margin: 0;
+  }
+  
+  .pagination-controls .ngx-pagination li {
+    display: inline-block;
+    margin: 0 5px;
+  }
+  
+  .pagination-controls .ngx-pagination li a {
+    padding: 5px 10px;
+    border-radius: 50px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #007bff;
+  }
+  
+  .pagination-controls .ngx-pagination li a:hover {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+  }
+  
+  /* Styling for info messages */
+  .alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    font-size: 18px;
+  }
+  
+  /* Ensure table remains responsive on smaller screens */
+  @media (max-width: 768px) {
+    .table-responsive {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .table th, .table td {
+      white-space: nowrap;
+    }
+  }
+  

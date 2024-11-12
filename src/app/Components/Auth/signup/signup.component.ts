@@ -4,12 +4,13 @@ import { AuthService } from '../../../Services/auth.service'; // Update the impo
 import { Router } from '@angular/router';
 import { SignupData } from '../../../Models/signup.model'; // Adjust the import path as needed
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class SignupComponent implements OnInit {
   signUpForm!: FormGroup;

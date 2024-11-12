@@ -1,1 +1,118 @@
-<p>event-details works!</p>
+<div class="container mt-5">
+  <!-- Row for Logout and Search by Tags -->
+  <div class="row mb-3">
+    <div class="col-md-9">
+      <!-- Search by Tags -->
+      <div class="input-group w-50">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by Tags"
+          [(ngModel)]="searchTag"
+          (input)="filterEventsByTag()"
+        />
+        <button class="btn btn-success" (click)="clearSearch()">Clear</button>
+      </div>
+    </div>
+    <div class="col-md-3 text-end">
+      <!-- Logout Button -->
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <h2>Choose Category</h2>
+      <div class="list-group">
+        <button
+          *ngFor="let category of categories"
+          (click)="onCategorySelect(category.id)"
+          class="list-group-item list-group-item-action"
+        >
+          {{ category.name }}
+        </button>
+      </div>
+      <h5 class=" mt-3">Registered Events</h5>
+      <button class="btn btn-primary" (click)="viewRegisteredEvents()">View Registered Events</button>
+
+    </div>
+    
+
+    <!-- Event Details -->
+    <div class="col-md-9">
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="filteredEvents.length > 0">
+        <h2>Available Events</h2>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let event of filteredEvents">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">{{ event.name }}</h5>
+                <p class="card-text"><strong>Description:</strong> {{ event.description }}</p>
+                
+                <!-- Row for Date, Venue, Artist, Organizer -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-text"><strong>Date:</strong> {{ event.date | date:'fullDate' }} at {{ event.date | date:'shortTime' }}</p>
+                    <p class="card-text"><strong>Venue:</strong> {{ event.venueName }}</p>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="card-text"><strong>Artist:</strong> {{ event.artistName }}</p>
+                    <p class="card-text"><strong>Organizer:</strong> {{ event.organizerName }}</p>
+                  </div>
+                </div>
+                
+                <!-- Tags Section -->
+                <div *ngIf="event.tagsArray.length > 0">
+                  <h6>Tags:</h6>
+                  <ul class="list-inline">
+                    <li class="list-inline-item" *ngFor="let tag of event.tagsArray">
+                      <span class="badge bg-info text-dark">{{ tag }}</span>
+                    </li>
+                  </ul>
+                </div>
+  
+                <!-- Tickets Section -->
+                <div *ngIf="event.ticketTypes.length > 0">
+                  <h6>Tickets:</h6>
+                  <ul>
+                    <li *ngFor="let ticket of event.ticketTypes">
+                      {{ ticket.name }} - {{ ticket.price | currency:'INR':true }}
+                      <span *ngIf="ticket.availableQuantity > 0">Available ({{ ticket.availableQuantity }})</span>
+                      <span *ngIf="ticket.availableQuantity === 0">Seats Full</span>
+                    </li>
+                  </ul>
+                </div>
+  
+                <button (click)="onSelectEvent(event)" class="btn btn-primary">Select Event</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="filteredEvents.length === 0 && selectedCategoryId !== null">
+        <p>No events found for the selected category.</p>
+      </div>
+
+<!-- Pagination Controls -->
+<div *ngIf="totalItems > itemsPerPage" class="d-flex justify-content-center mt-4">
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
+        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
